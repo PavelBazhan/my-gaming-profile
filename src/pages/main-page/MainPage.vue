@@ -1,11 +1,11 @@
 <template>
   <h1>MainPage</h1>
-  <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+  <div style="display: flex; gap: 16px; margin-bottom: 16px; max-width: 912px; flex-flow: row wrap;">
     <game-record
-      v-for="n in 8"
+      v-for="n in 12"
       :key="n"
       :active="activeGameRecordIndex === n"
-      :position="n < 5 ? Position.right : Position.left"
+      :position="(n % 8 > 0 && n % 8 < 5) ? Position.right : Position.left"
       @click="activateGameRecord(n)"
     />
   </div>
