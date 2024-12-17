@@ -1,0 +1,27 @@
+$color-black: var(--color-blue-black);
+$color-white: var(--color-white);
+
+@font-face {
+  font-family: "Iceland";
+  src:
+    local("Iceland"),
+    url("fonts/Iceland-Regular.ttf") format("truetype"),
+}
+
+@font-face {
+  font-family: "Rubik";
+  src:
+    local("Rubik"),
+    url("fonts/Rubik-Regular.ttf") format("truetype"),
+}
+
+body {
+  background-color: $color-black;
+  color: $color-white;
+  font-family: "Rubik", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Iceland";
+  margin: 0;
+}
