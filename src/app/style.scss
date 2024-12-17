@@ -15,6 +15,10 @@ $color-white: var(--color-white);
     url("fonts/Rubik-Regular.ttf") format("truetype"),
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: $color-black;
   color: $color-white;

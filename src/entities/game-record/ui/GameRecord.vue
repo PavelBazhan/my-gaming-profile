@@ -5,7 +5,16 @@
     </div>
     <Transition name="information-fade">
       <div class="game-record__information" :class="gameRecordInformationComputedClass" v-show="active">
-  
+        <div class="game-record__information__title">
+          Doom 3: Resurrection of Evil
+        </div>
+        <div class="game-record__information__description">
+          <div class="info-block">2019</div>
+          <div class="info-marker"></div>
+          <div class="info-block">Sony PlayStation 4</div>
+          <div class="info-marker"></div>
+          <div class="info-block">DLC</div>
+        </div>
       </div>
     </Transition>
   </button>
@@ -52,6 +61,7 @@ $animation-duration: 0.2s;
   background-color: transparent;
   border: none;
   transition: all $animation-duration ease;
+  text-align: left;
 }
 
 .game-record_active {
@@ -72,6 +82,8 @@ $animation-duration: 0.2s;
   background-color: var(--color-blue-dark);
   border: 1px solid var(--color-blue);
   border-radius: 8px;
+  background-image: url(./doom3roe.png);
+  background-size: cover;
 
   &:hover {
     border-color: var(--color-blue-light);
@@ -98,16 +110,53 @@ $animation-duration: 0.2s;
   z-index: 2;
   top: 0;
   left: 104px;
+  padding: 8px 12px;
+  user-select: text;
+}
+
+.game-record__information__title {
+  font-family: Rubik, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--color-blue-accent);
+}
+
+.game-record__information__description {
+  font-family: Rubik, sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+
+  .info-marker {
+    margin: 0 8px;
+    width: 2px;
+    height: 2px;
+    background-color: var(--color-white);
+  }
 }
 
 .game-record__information_right {
   left: 104px;
   transform-origin: 0% 0%;
+  .game-record__information__title {
+    text-align: left;
+  }
+  .game-record__information__description {
+    justify-content: start;
+  }
 }
 
 .game-record__information_left {
   left: -426px;
   transform-origin: 100% 0%;
+  .game-record__information__title {
+    text-align: right;
+  }
+  .game-record__information__description {
+    justify-content: end;
+  }
 }
 
 .information-fade-enter-active,

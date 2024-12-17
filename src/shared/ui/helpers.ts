@@ -7,6 +7,7 @@ export const themeColors: ThemeColors = {
   'blue-dark': '#11212D',
   'blue': '#253745',
   'blue-light': '#4A5C6A',
+  'blue-accent': '#8FBDFA',
   'gray': '#9BABAB',
   'white': '#CCD0CF',
   'purple': '#6C85FF',

@@ -9,9 +9,6 @@
       @click="activateGameRecord(n)"
     />
   </div>
-  <div style="display: flex; gap: 16px;">
-    <game-record v-for="m in 8" :key="m" />
-  </div>
 </template>
 
 <script setup lang="ts">
