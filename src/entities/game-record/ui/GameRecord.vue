@@ -1,23 +1,18 @@
 <template>
-  <button class="game-record" :class="{ 'game-record_active': active }">
-    <div class="game-record__content" @click="onClick">
-
-    </div>
-    <Transition name="information-fade">
-      <div class="game-record__information" :class="gameRecordInformationComputedClass" v-show="active">
-        <div class="game-record__information__title">
-          Doom 3: Resurrection of Evil
-        </div>
-        <div class="game-record__information__description">
-          <div class="info-block">2019</div>
-          <div class="info-marker"></div>
-          <div class="info-block">Sony PlayStation 4</div>
-          <div class="info-marker"></div>
-          <div class="info-block">DLC</div>
-        </div>
+  <div class="game-record">
+    <div class="game-record__information" :class="gameRecordInformationComputedClass">
+      <div class="game-record__information__title">
+        Doom 3: Resurrection of Evil
       </div>
-    </Transition>
-  </button>
+      <div class="game-record__information__description">
+        <div class="info-block">2019</div>
+        <div class="info-marker"></div>
+        <div class="info-block">Sony PlayStation 4</div>
+        <div class="info-marker"></div>
+        <div class="info-block">DLC</div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -44,10 +39,6 @@ const gameRecordInformationComputedClass = computed(() => {
   }
   return classOutput;
 });
-
-const onClick = () => {
-  emit('click');
-};
 </script>
 
 <style lang="scss" scoped>
@@ -57,28 +48,10 @@ $animation-duration: 0.2s;
   display: block;
   width: 100px;
   height: 152px;
-  position: relative;
   background-color: transparent;
   border: none;
-  transition: all $animation-duration ease;
-  text-align: left;
-}
+  transition: transform $animation-duration ease;
 
-.game-record_active {
-  transform: scale(1.16);
-  z-index: 1;
-  
-  .game-record__content {
-    border-color: var(--color-blue-light);
-  }
-}
-
-.game-record__content {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
   background-color: var(--color-blue-dark);
   border: 1px solid var(--color-blue);
   border-radius: 8px;
@@ -88,18 +61,20 @@ $animation-duration: 0.2s;
   &:hover {
     border-color: var(--color-blue-light);
     cursor: pointer;
+    transform: scale(1.10);
+
+    .game-record__information {
+      display: block;
+    }
   }
   
   &:focus {
     outline: none;
   }
-
-  &:active {
-    transform: scale(0.97);
-  }
 }
 
 .game-record__information {
+  display: none;
   position: absolute;
   width: 420px;
   height: 124px;
@@ -107,11 +82,10 @@ $animation-duration: 0.2s;
   border: 1px solid var(--color-blue-light);
   backdrop-filter: blur(6px);
   border-radius: 8px;
-  z-index: 2;
   top: 0;
   left: 104px;
   padding: 8px 12px;
-  user-select: text;
+  pointer-events: none;
 }
 
 .game-record__information__title {
@@ -157,16 +131,5 @@ $animation-duration: 0.2s;
   .game-record__information__description {
     justify-content: end;
   }
-}
-
-.information-fade-enter-active,
-.information-fade-leave-active {
-  transition: all $animation-duration ease;
-}
-
-.information-fade-enter-from,
-.information-fade-leave-to {
-  opacity: 0;
-  transform: scale(0.6);
 }
 </style>
