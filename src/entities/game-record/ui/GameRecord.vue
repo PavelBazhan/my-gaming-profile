@@ -66,10 +66,6 @@ $animation-duration: 0.2s;
       transform: scaleX(1);
     }
 
-    .game-record__information__background {
-      backdrop-filter: blur(12px);
-    }
-
     .game-record__overlay {
       opacity: 1;
       border-color: var(--color-blue-light);
