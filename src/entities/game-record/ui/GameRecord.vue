@@ -1,6 +1,6 @@
 <template>
-  <div class="game-record">
-    <div class="game-record__information" :class="gameRecordInformationComputedClass">
+  <div class="game-record" :class="gameRecordComputedClass">
+    <div class="game-record__information">
       <div class="game-record__information__title">
         Doom 3: Resurrection of Evil
       </div>
@@ -25,17 +25,13 @@ const props = withDefaults(defineProps<Props>(), {
   position: Position.right,
 });
 
-const emit = defineEmits<{
-  click: []
-}>();
-
-const gameRecordInformationComputedClass = computed(() => {
+const gameRecordComputedClass = computed(() => {
   const classOutput: Record<string, unknown> = {};
   if (props.position === Position.left) {
-    classOutput['game-record__information_left'] = true;
+    classOutput['game-record_left'] = true;
   }
   if (props.position === Position.right) {
-    classOutput['game-record__information_right'] = true;
+    classOutput['game-record_right'] = true;
   }
   return classOutput;
 });
@@ -47,24 +43,36 @@ $animation-duration: 0.2s;
 .game-record {
   display: block;
   width: 100px;
-  height: 152px;
+  height: 150px;
   background-color: transparent;
   border: none;
-  transition: transform $animation-duration ease;
+  position: relative;
 
   background-color: var(--color-blue-dark);
   border: 1px solid var(--color-blue);
-  border-radius: 8px;
+  border-radius: 4px;
   background-image: url(./doom3roe.png);
   background-size: cover;
+
+  transition: border-color $animation-duration ease;
+
 
   &:hover {
     border-color: var(--color-blue-light);
     cursor: pointer;
-    transform: scale(1.10);
 
     .game-record__information {
-      display: block;
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .game-record__information__background {
+      backdrop-filter: blur(12px);
+    }
+
+    .game-record__overlay {
+      opacity: 1;
+      border-color: var(--color-blue-light);
     }
   }
   
@@ -73,19 +81,81 @@ $animation-duration: 0.2s;
   }
 }
 
+.game-record_right:hover {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.game-record_left:hover {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.game-record__overlay {
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  right: -1px;
+  bottom: -1px;
+  border: 1px solid var(--color-blue);
+  border-radius: 4px;
+  transition: border-color $animation-duration ease;
+  background-image: url(./doom3roe.png);
+  z-index: 3;
+  background-size: cover;
+  opacity: 0;
+}
+
 .game-record__information {
-  display: none;
+  display: block;
   position: absolute;
   width: 420px;
-  height: 124px;
-  background-color: rgba(var(--color-blue-black-rgb), 0.5);
-  border: 1px solid var(--color-blue-light);
-  backdrop-filter: blur(6px);
-  border-radius: 8px;
-  top: 0;
-  left: 104px;
-  padding: 8px 12px;
+  height: 150px;
+  background-color: rgba(var(--color-blue-dark-rgb), 0.5);
+  backdrop-filter: blur(12px);
+  top: -1px;
+  left: 100px;
+  padding: 12px 16px;
   pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transform: scaleX(0.97);
+  border-radius: 4px;
+  border: 1px solid var(--color-blue-light);
+
+  transition: all $animation-duration ease;
+}
+
+.game-record_right .game-record__information {
+  left: calc(-2px + 100px);
+  transform-origin: 0% 0%;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  .game-record__rails-border {
+    left: -4px;
+  }
+  .game-record__information__title {
+    text-align: left;
+  }
+  .game-record__information__description {
+    justify-content: start;
+  }
+}
+
+.game-record_left .game-record__information {
+  left: calc(-420px);
+  transform-origin: 100% 0%;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  .game-record__rails-border {
+    right: -3px;
+  }
+  .game-record__information__title {
+    text-align: right;
+  }
+  .game-record__information__description {
+    justify-content: end;
+  }
 }
 
 .game-record__information__title {
@@ -102,34 +172,13 @@ $animation-duration: 0.2s;
   color: var(--color-white);
   display: flex;
   align-items: center;
+  transform: scaleX(1);
 
   .info-marker {
     margin: 0 8px;
     width: 2px;
     height: 2px;
     background-color: var(--color-white);
-  }
-}
-
-.game-record__information_right {
-  left: 104px;
-  transform-origin: 0% 0%;
-  .game-record__information__title {
-    text-align: left;
-  }
-  .game-record__information__description {
-    justify-content: start;
-  }
-}
-
-.game-record__information_left {
-  left: -426px;
-  transform-origin: 100% 0%;
-  .game-record__information__title {
-    text-align: right;
-  }
-  .game-record__information__description {
-    justify-content: end;
   }
 }
 </style>
