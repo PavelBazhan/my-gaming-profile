@@ -5,5 +5,6 @@ export enum Position {
 
 export interface Props {
   active?: boolean,
+  completed?: boolean,
   position?: Position,
 }

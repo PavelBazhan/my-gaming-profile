@@ -22,6 +22,7 @@ import type { Props } from '@/entities/game-record/model';
 
 const props = withDefaults(defineProps<Props>(), {
   active: false,
+  completed: true,
   position: Position.right,
 });
 
@@ -32,6 +33,9 @@ const gameRecordComputedClass = computed(() => {
   }
   if (props.position === Position.right) {
     classOutput['game-record_right'] = true;
+  }
+  if (!props.completed) {
+    classOutput['game-record_not-completed'] = true;
   }
   return classOutput;
 });
@@ -51,11 +55,19 @@ $animation-duration: 0.2s;
   background-color: var(--color-gray-1);
   border: 1px solid var(--color-gray-4);
   border-radius: 4px;
-  background-image: url(./doom3roe.png);
-  background-size: cover;
+  // background-image: url(./doom3roe.png);
+  // background-size: cover;
 
   transition: border-color $animation-duration ease;
 
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(./doom3roe.png);
+    background-size: cover;
+  }
 
   &:hover {
     border-color: var(--color-gray-5);
@@ -156,5 +168,9 @@ $animation-duration: 0.2s;
     height: 2px;
     background-color: var(--color-black);
   }
+}
+
+.game-record_not-completed::before {
+  filter: grayscale(0.8);
 }
 </style>

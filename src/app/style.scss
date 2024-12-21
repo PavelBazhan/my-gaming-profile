@@ -25,8 +25,29 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Iceland";
   margin: 0;
+  font-weight: 400;
 }
 
 a {
   color: var(--color-blue);
+}
+
+$base-shift: 4px;
+
+@for $i from 1 through 12 {
+  .mt-#{$i} {
+    margin-top: $i * $base-shift;
+  }
+  .mr-#{$i} {
+    margin-right: $i * $base-shift;
+  }
+  .mb-#{$i} {
+    margin-bottom: $i * $base-shift;
+  }
+  .ml-#{$i} {
+    margin-left: $i * $base-shift;
+  }
+  .ma-#{$i} {
+    margin: $i * $base-shift;
+  }
 }

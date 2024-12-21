@@ -8,7 +8,6 @@ export default [
     rules: {
       'semi': 'error',
       'comma-dangle': ['error', 'always-multiline'],
-      'max-len': ["error", { "code": 120 }],
     },
   },
 

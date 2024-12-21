@@ -32,9 +32,10 @@ $content-width: 1200px;
   justify-content: center;
   align-items: center;
   padding: 24px 0;
-  border-bottom: 1px solid var(--color-gray-8);
+  border-bottom: 1px solid var(--color-gray-4);
   &__title {
     font-size: 48px;
+    font-weight: bold;
   }
 }
 
@@ -51,7 +52,7 @@ $content-width: 1200px;
 .app-footer {
   background-color: var(--color-gray-1);
   flex: 0 0 80px;
-  border-top: 1px solid var(--color-gray-8);
+  border-top: 1px solid var(--color-gray-4);
   display: flex;
   justify-content: center;
   align-items: center;
