@@ -54,20 +54,11 @@ $animation-duration: 0.2s;
 
   background-color: var(--color-gray-1);
   border: 1px solid var(--color-gray-4);
-  border-radius: 4px;
-  // background-image: url(./doom3roe.png);
-  // background-size: cover;
+  background-image: url(./doom3roe.png);
+  background-size: cover;
+  border-radius: 8px;
 
   transition: border-color $animation-duration ease;
-
-  &::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: url(./doom3roe.png);
-    background-size: cover;
-  }
 
   &:hover {
     border-color: var(--color-gray-5);
@@ -108,7 +99,7 @@ $animation-duration: 0.2s;
   z-index: 2;
   opacity: 0;
   transform: scaleX(0.97);
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid var(--color-gray-5);
 
   transition: all $animation-duration ease;
@@ -170,7 +161,7 @@ $animation-duration: 0.2s;
   }
 }
 
-.game-record_not-completed::before {
-  filter: grayscale(0.8);
+.game-record_not-completed {
+  background-image: url(./doom3roe-gs.png);
 }
 </style>
