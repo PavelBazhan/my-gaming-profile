@@ -3,16 +3,17 @@ export interface ThemeColors {
 };
 
 export const themeColors: ThemeColors = {
-  'blue-black': '#06141B',
-  'blue-dark': '#11212D',
-  'blue': '#253745',
-  'blue-light': '#4A5C6A',
-  'blue-accent': '#8FBDFA',
-  'gray': '#9BABAB',
-  'white': '#CCD0CF',
-  'purple': '#6C85FF',
-  'green': '#00B831',
-  'gold': '#DDC300',
+  'white': '#FFFFFF',
+  'gray-1': '#f8f9fa',
+  'gray-2': '#e9ecef',
+  'gray-3': '#dee2e6',
+  'gray-4': '#ced4da',
+  'gray-5': '#adb5bd',
+  'gray-6': '#6c757d',
+  'gray-7': '#495057',
+  'gray-8': '#343a40',
+  'black': '#212529',
+  'blue': '#0041B1',
 };
 
 export const hexToRgb = (hex: string) => {

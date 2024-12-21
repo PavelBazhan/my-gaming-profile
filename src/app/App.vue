@@ -9,13 +9,11 @@
       </div>
     </div>
     <div class="app-footer">
-      footer
+      <span class="credentials">
+        <span>Design & Development:</span>
+        <a href="https://github.com/PavelBazhan/" target="_blank">Pavel Bazhan</a>
+      </span>
     </div>
-    <!-- <h1>App.vue</h1>
-    <strong>Current route path:</strong> {{ $route.fullPath }}
-    <router-link to="/">main</router-link>
-    <router-link to="/about">about</router-link>
-    <router-view /> -->
   </div>
 </template>
 
@@ -29,12 +27,12 @@ $content-width: 1200px;
 }
 
 .app-header {
-  background-color: var(--color-black-light);
+  background-color: var(--color-gray-1);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 24px 0;
-  border-bottom: 1px solid var(--color-blue);
+  border-bottom: 1px solid var(--color-gray-8);
   &__title {
     font-size: 48px;
   }
@@ -45,13 +43,22 @@ $content-width: 1200px;
   display: flex;
   justify-content: center;
   &__inner {
-    background-color: var(--color-black-light);
+    background-color: var(--color-white);
     flex: 0 0 $content-width;
   }
 }
 
 .app-footer {
-  background-color: var(--color-black-light);
+  background-color: var(--color-gray-1);
+  flex: 0 0 80px;
+  border-top: 1px solid var(--color-gray-8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .credentials > a {
+    margin-left: 0.5em;
+  }
 }
 
 </style>

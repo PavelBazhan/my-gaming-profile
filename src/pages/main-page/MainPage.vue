@@ -1,5 +1,4 @@
 <template>
-  <h1>MainPage</h1>
   <div style="display: flex; gap: 16px; margin-bottom: 16px; max-width: 912px; flex-flow: row wrap;">
     <game-record
       v-for="n in 12"

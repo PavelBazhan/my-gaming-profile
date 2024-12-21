@@ -48,8 +48,8 @@ $animation-duration: 0.2s;
   border: none;
   position: relative;
 
-  background-color: var(--color-blue-dark);
-  border: 1px solid var(--color-blue);
+  background-color: var(--color-gray-1);
+  border: 1px solid var(--color-gray-4);
   border-radius: 4px;
   background-image: url(./doom3roe.png);
   background-size: cover;
@@ -58,17 +58,12 @@ $animation-duration: 0.2s;
 
 
   &:hover {
-    border-color: var(--color-blue-light);
+    border-color: var(--color-gray-5);
     cursor: pointer;
 
     .game-record__information {
       opacity: 1;
       transform: scaleX(1);
-    }
-
-    .game-record__overlay {
-      opacity: 1;
-      border-color: var(--color-blue-light);
     }
   }
   
@@ -87,27 +82,12 @@ $animation-duration: 0.2s;
   border-bottom-left-radius: 0;
 }
 
-.game-record__overlay {
-  position: absolute;
-  left: -1px;
-  top: -1px;
-  right: -1px;
-  bottom: -1px;
-  border: 1px solid var(--color-blue);
-  border-radius: 4px;
-  transition: border-color $animation-duration ease;
-  background-image: url(./doom3roe.png);
-  z-index: 3;
-  background-size: cover;
-  opacity: 0;
-}
-
 .game-record__information {
   display: block;
   position: absolute;
   width: 420px;
   height: 150px;
-  background-color: rgba(var(--color-blue-dark-rgb), 0.5);
+  background-color: rgba(var(--color-gray-2-rgb), 0.75);
   backdrop-filter: blur(12px);
   top: -1px;
   left: 100px;
@@ -117,7 +97,7 @@ $animation-duration: 0.2s;
   opacity: 0;
   transform: scaleX(0.97);
   border-radius: 4px;
-  border: 1px solid var(--color-blue-light);
+  border: 1px solid var(--color-gray-5);
 
   transition: all $animation-duration ease;
 }
@@ -158,14 +138,14 @@ $animation-duration: 0.2s;
   font-family: Rubik, sans-serif;
   font-size: 20px;
   line-height: 24px;
-  color: var(--color-blue-accent);
+  color: var(--color-blue);
 }
 
 .game-record__information__description {
   font-family: Rubik, sans-serif;
   font-size: 14px;
   line-height: 24px;
-  color: var(--color-white);
+  color: var(--color-black);
   display: flex;
   align-items: center;
   transform: scaleX(1);
@@ -174,7 +154,7 @@ $animation-duration: 0.2s;
     margin: 0 8px;
     width: 2px;
     height: 2px;
-    background-color: var(--color-white);
+    background-color: var(--color-black);
   }
 }
 </style>
