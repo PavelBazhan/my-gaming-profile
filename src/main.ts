@@ -10,14 +10,23 @@ import './app/style.scss';
 
 import { generateCssVariablesFromThemeColors, themeColors } from '@/shared/ui/helpers.ts';
 
+import { worker } from '@/app/mocks.ts';
+
 generateCssVariablesFromThemeColors(themeColors);
+
+
+async function prepareWorkers(): Promise<void> {
+  await worker.start();
+}
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
 });
 
-createApp(App)
-  .use(router)
-  .mount('#app');
 
+prepareWorkers().then(() => {
+  createApp(App)
+    .use(router)
+    .mount('#app');
+});

@@ -1,15 +1,15 @@
 <template>
-  <div class="game-record" :class="gameRecordComputedClass">
-    <div class="game-record__information">
+  <div class="game-record" :class="gameRecordComputedClass" :style="gameRecordComputedStyle">
+    <div v-if="props.gameRecord" class="game-record__information">
       <div class="game-record__information__title">
-        Doom 3: Resurrection of Evil
+        {{ props.gameRecord.title }}
       </div>
       <div class="game-record__information__description">
-        <div class="info-block">2019</div>
-        <div class="info-marker"></div>
-        <div class="info-block">Sony PlayStation 4</div>
-        <div class="info-marker"></div>
-        <div class="info-block">DLC</div>
+        <div class="info-block">{{ props.gameRecord.releaseYear }}</div>
+        <!-- <div class="info-marker"></div> -->
+        <div class="info-block">{{ props.gameRecord.platform }}</div>
+        <!-- <div class="info-marker"></div> -->
+        <div v-if="props.gameRecord.isDlc" class="info-block">DLC</div>
       </div>
     </div>
   </div>
@@ -39,10 +39,15 @@ const gameRecordComputedClass = computed(() => {
   }
   return classOutput;
 });
+
+const gameRecordComputedStyle = computed(() => ({
+  backgroundImage: props.gameRecord?.imagePath,
+}));
 </script>
 
 <style lang="scss" scoped>
 $animation-duration: 0.2s;
+$border-radius: 6px;
 
 .game-record {
   display: block;
@@ -54,9 +59,9 @@ $animation-duration: 0.2s;
 
   background-color: var(--color-gray-1);
   border: 1px solid var(--color-gray-4);
-  background-image: url(./doom3roe.png);
+  // background-image: url(./doom3roe.png);
   background-size: cover;
-  border-radius: 8px;
+  border-radius: $border-radius;
 
   transition: border-color $animation-duration ease;
 
@@ -99,7 +104,7 @@ $animation-duration: 0.2s;
   z-index: 2;
   opacity: 0;
   transform: scaleX(0.97);
-  border-radius: 8px;
+  border-radius: $border-radius;
   border: 1px solid var(--color-gray-5);
 
   transition: all $animation-duration ease;
@@ -163,5 +168,20 @@ $animation-duration: 0.2s;
 
 .game-record_not-completed {
   background-image: url(./doom3roe-gs.png);
+}
+
+.info-block:not(:first-child) {
+  position: relative;
+  padding-left: 18px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: var(--color-black);
+    left: 8px;
+    top: 11px;
+  }
 }
 </style>
