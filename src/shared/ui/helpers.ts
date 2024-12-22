@@ -15,6 +15,7 @@ export const themeColors: ThemeColors = {
   'black': '#212529',
   'blue': '#0041B1',
   'glass': '#EDF6FF',
+  'gold': '#FFD700',
 };
 
 export const hexToRgb = (hex: string) => {

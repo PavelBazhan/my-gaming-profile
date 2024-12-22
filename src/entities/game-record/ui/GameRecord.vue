@@ -10,6 +10,12 @@
         <div class="info-block">{{ props.gameRecord.platform }}</div>
         <div v-if="props.gameRecord.isDlc" class="info-block">DLC</div>
       </div>
+      <div class="game-record__information__flags">
+        <game-record-flag-plate :icon="Icon.finished" :disabled="!props.gameRecord.finished" />
+        <game-record-flag-plate :icon="Icon.mastered" :disabled="!props.gameRecord.mastered" />
+        <game-record-flag-plate :icon="Icon.favourite" :disabled="!props.gameRecord.favourite" />
+        <game-record-flag-plate :icon="Icon.betterTogether" :disabled="!props.gameRecord.betterTogether" />
+      </div>
     </div>
   </div>
 </template>
@@ -18,6 +24,8 @@
 import { computed } from 'vue';
 import { Position } from '@/entities/game-record/model';
 import type { Props } from '@/entities/game-record/model';
+import GameRecordFlagPlate from '@/shared/ui/GameRecordFlagPlate/GameRecordFlagPlate.vue';
+import { Icon } from '@/shared/ui/GameRecordFlagPlate/props.interface';
 
 const props = withDefaults(defineProps<Props>(), {
   active: false,
@@ -198,5 +206,13 @@ $border-radius: 6px;
     left: 8px;
     top: 11px;
   }
+}
+
+.game-record__information__flags {
+  position: absolute;
+  left: calc(50% - 60px);
+  bottom: 12px;
+  display: flex;
+  gap: 8px;
 }
 </style>
