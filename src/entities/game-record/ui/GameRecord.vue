@@ -1,14 +1,13 @@
 <template>
-  <div class="game-record" :class="gameRecordComputedClass" :style="gameRecordComputedStyle">
+  <div class="game-record" :class="gameRecordComputedClass">
+    <div class="game-record__background" :style="gameRecordComputedStyle"/>
     <div v-if="props.gameRecord" class="game-record__information">
       <div class="game-record__information__title">
         {{ props.gameRecord.title }}
       </div>
       <div class="game-record__information__description">
         <div class="info-block">{{ props.gameRecord.releaseYear }}</div>
-        <!-- <div class="info-marker"></div> -->
         <div class="info-block">{{ props.gameRecord.platform }}</div>
-        <!-- <div class="info-marker"></div> -->
         <div v-if="props.gameRecord.isDlc" class="info-block">DLC</div>
       </div>
     </div>
@@ -34,7 +33,7 @@ const gameRecordComputedClass = computed(() => {
   if (props.position === Position.right) {
     classOutput['game-record_right'] = true;
   }
-  if (!props.completed) {
+  if (props.gameRecord && !props.gameRecord?.finished) {
     classOutput['game-record_not-completed'] = true;
   }
   return classOutput;
@@ -58,12 +57,20 @@ $border-radius: 6px;
   position: relative;
 
   background-color: var(--color-gray-1);
-  border: 1px solid var(--color-gray-4);
-  // background-image: url(./doom3roe.png);
-  background-size: cover;
-  border-radius: $border-radius;
 
   transition: border-color $animation-duration ease;
+
+  &__background {
+    position: absolute;
+    border-radius: $border-radius;
+    background-color: var(--color-gray-2);
+    background-size: cover;
+    background-position: center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
 
   &:hover {
     border-color: var(--color-gray-5);
@@ -72,6 +79,7 @@ $border-radius: 6px;
     .game-record__information {
       opacity: 1;
       transform: scaleX(1);
+      border-color: var(--color-gray-5);
     }
   }
   
@@ -80,12 +88,12 @@ $border-radius: 6px;
   }
 }
 
-.game-record_right:hover {
+.game-record_right:hover .game-record__background {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.game-record_left:hover {
+.game-record_left:hover .game-record__background {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -95,9 +103,9 @@ $border-radius: 6px;
   position: absolute;
   width: 420px;
   height: 150px;
-  background-color: rgba(var(--color-gray-2-rgb), 0.75);
+  background-color: rgba(var(--color-glass-rgb), 0.8);
   backdrop-filter: blur(12px);
-  top: -1px;
+  top: 0;
   left: 100px;
   padding: 12px 16px;
   pointer-events: none;
@@ -105,16 +113,18 @@ $border-radius: 6px;
   opacity: 0;
   transform: scaleX(0.97);
   border-radius: $border-radius;
-  border: 1px solid var(--color-gray-5);
 
-  transition: all $animation-duration ease;
+  transition: 
+    transform $animation-duration ease,
+    opacity $animation-duration ease;
 }
 
 .game-record_right .game-record__information {
-  left: calc(-2px + 100px);
+  left: 100px;
   transform-origin: 0% 0%;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+  border-left: 1px solid transparent;
   .game-record__rails-border {
     left: -4px;
   }
@@ -131,6 +141,7 @@ $border-radius: 6px;
   transform-origin: 100% 0%;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  border-right: 1px solid transparent;
   .game-record__rails-border {
     right: -3px;
   }
@@ -166,8 +177,12 @@ $border-radius: 6px;
   }
 }
 
-.game-record_not-completed {
-  background-image: url(./doom3roe-gs.png);
+.game-record_not-completed .game-record__background {
+  filter: grayscale(0.8);
+  transition: filter $animation-duration ease;
+  &:hover {
+    filter: grayscale(0);
+  }
 }
 
 .info-block:not(:first-child) {

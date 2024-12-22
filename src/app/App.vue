@@ -27,7 +27,7 @@ $content-width: 1200px;
 }
 
 .app-header {
-  background-color: var(--color-gray-1);
+  background-color: var(--color-gray-2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,13 +44,13 @@ $content-width: 1200px;
   display: flex;
   justify-content: center;
   &__inner {
-    background-color: var(--color-white);
+    background-color: var(--color-gray-1);
     flex: 0 0 $content-width;
   }
 }
 
 .app-footer {
-  background-color: var(--color-gray-1);
+  background-color: var(--color-gray-2);
   flex: 0 0 80px;
   border-top: 1px solid var(--color-gray-4);
   display: flex;
